@@ -4,14 +4,17 @@ import numpy as np
 import pandas as pd
 import xgboost
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
-from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import Ridge
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+
+try:
+    from pipeline import build_preprocessing_pipeline
+except ModuleNotFoundError:
+    from training.pipeline import build_preprocessing_pipeline
 
 try:
     from download_data import download_or_generate_dataset
@@ -46,25 +49,6 @@ def run_eda(df: pd.DataFrame):
     print(bmi_smoker_charges)
     df.drop(columns=['bmi_category'], inplace=True, errors='ignore')
     print("=" * 60 + "\n")
-
-def build_preprocessing_pipeline(num_features, cat_features):
-    num_transformer = Pipeline(steps=[
-        ('imputer', SimpleImputer(strategy='median')),
-        ('scaler', StandardScaler())
-    ])
-    
-    cat_transformer = Pipeline(steps=[
-        ('imputer', SimpleImputer(strategy='most_frequent')),
-        ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=False))
-    ])
-    
-    preprocessor = ColumnTransformer(
-        transformers=[
-            ('num', num_transformer, num_features),
-            ('cat', cat_transformer, cat_features)
-        ]
-    )
-    return preprocessor
 
 def train_and_evaluate():
     # Step 1: Ensure dataset is available
