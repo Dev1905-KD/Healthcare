@@ -35,9 +35,8 @@ ColumnTransformer
   └── Categorical (sex, smoker, region) → Most Frequent Imputer + OneHotEncoder
      ↓
 Candidate Models Evaluated:
-  ├── Ridge Regression
-  ├── Random Forest Regressor
-  └── XGBoost Regressor
+     ├── Random Forest Regressor
+     └── XGBoost Regressor
      ↓
 RandomizedSearchCV (5-Fold Cross Validation)
      ↓
@@ -129,7 +128,6 @@ Open your browser at: **`http://127.0.0.1:8000`**
 
 | Model | Test $R^2$ | MAE ($) | RMSE ($) | Best CV $R^2$ | Tuning Strategy |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| Ridge Regression | 0.7830 | $4,201.56 | $5,803.99 | 0.7331 | `RandomizedSearchCV` |
 | Random Forest Regressor | 0.8786 | $2,480.00 | $4,341.39 | 0.8466 | `RandomizedSearchCV` |
 | **XGBoost Regressor** *(Winner)* | **0.8815** | **$2,421.16** | **$4,289.69** | **0.8480** | `RandomizedSearchCV` |
 

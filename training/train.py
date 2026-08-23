@@ -5,8 +5,6 @@ import pandas as pd
 import xgboost
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.linear_model import Ridge
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
@@ -75,13 +73,6 @@ def train_and_evaluate():
     
     # Step 5: Models & Hyperparameter Spaces for RandomizedSearchCV
     model_configs = {
-        'Ridge Regression': {
-            'model': Ridge(),
-            'params': {
-                'regressor__alpha': np.logspace(-2, 3, 50)
-            },
-            'n_iter': 15
-        },
         'Random Forest': {
             'model': RandomForestRegressor(random_state=42),
             'params': {

@@ -1,0 +1,8 @@
+venv/
+.git/
+training/
+data/
+README.md
+requirements-training.txt
+*.pyc
+__pycache__/
