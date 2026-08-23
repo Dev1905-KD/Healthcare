@@ -1,0 +1,586 @@
+/* ==========================================================================
+   AuraHealth - Minimal Classy Pastel Design System
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Pastel Minimalist Color Palette */
+  --bg-main: #f6f8fa;
+  --bg-gradient-start: #f8fafc;
+  --bg-gradient-end: #edf2f7;
+  
+  --card-bg: #ffffff;
+  --card-border: rgba(226, 232, 240, 0.8);
+  --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
+  
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  
+  /* Muted Accent Colors */
+  --primary: #4f46e5;         /* Soft Muted Indigo */
+  --primary-light: #eeeffe;
+  --primary-hover: #4338ca;
+  
+  --sage: #477a68;            /* Soft Muted Sage */
+  --sage-bg: #eaf3f0;
+  
+  --slate-blue: #3b82f6;      /* Soft Muted Blue */
+  --slate-blue-bg: #eff6ff;
+  
+  --amber: #d97706;           /* Soft Pastel Amber */
+  --amber-bg: #fef3c7;
+  
+  --rose: #e11d48;            /* Soft Pastel Rose */
+  --rose-bg: #ffe4e6;
+  
+  --border-color: #e2e8f0;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  
+  --transition: all 0.25s ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--card-bg);
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+  border: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.brand-badge .dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--sage);
+  border-radius: 50%;
+}
+
+.header-title h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.header-title p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1.1rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-ghost:hover {
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+}
+
+/* Grid Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+}
+
+.card-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.card-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 1.4rem;
+}
+
+.form-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.form-value-badge {
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: var(--bg-main);
+  padding: 0.15rem 0.6rem;
+  border-radius: 12px;
+  color: var(--primary);
+}
+
+/* Custom Slider */
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.custom-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 5px;
+  background: var(--border-color);
+  outline: none;
+  transition: var(--transition);
+}
+
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.custom-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* Toggle Buttons / Segmented Control */
+.segmented-control {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--bg-main);
+  padding: 4px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.segmented-option {
+  position: relative;
+}
+
+.segmented-option input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.segmented-option label {
+  display: block;
+  text-align: center;
+  padding: 0.6rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.segmented-option input:checked + label {
+  background: var(--card-bg);
+  color: var(--text-primary);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.segmented-option input:checked + label.smoker-yes {
+  background: var(--rose-bg);
+  color: var(--rose);
+}
+
+.select-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-main);
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.select-control:focus {
+  border-color: var(--primary);
+  background-color: var(--card-bg);
+}
+
+/* Submit Button */
+.btn-submit {
+  width: 100%;
+  padding: 0.95rem;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-submit:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.35);
+}
+
+/* BMI Status Pill */
+.bmi-indicator {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  margin-left: 0.5rem;
+}
+.bmi-normal { background: var(--sage-bg); color: var(--sage); }
+.bmi-overweight { background: var(--amber-bg); color: var(--amber); }
+.bmi-obese { background: var(--rose-bg); color: var(--rose); }
+
+/* Output Results Panel */
+.results-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero-prediction {
+  background: linear-gradient(135deg, #fafbfd, #f1f5f9);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.prediction-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 0.3rem;
+}
+
+.prediction-amount {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-top: 0.6rem;
+}
+
+.badge-pill.success { background: var(--sage-bg); color: var(--sage); }
+.badge-pill.info { background: var(--slate-blue-bg); color: var(--slate-blue); }
+.badge-pill.warning { background: var(--amber-bg); color: var(--amber); }
+.badge-pill.danger { background: var(--rose-bg); color: var(--rose); }
+
+/* Percentile Bar */
+.percentile-section {
+  margin-top: 0.5rem;
+}
+
+.percentile-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+
+.progress-track {
+  height: 8px;
+  background: var(--bg-main);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sage), var(--amber), var(--rose));
+  width: 0%;
+  border-radius: 10px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Risk Factors List */
+.risk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.risk-item {
+  display: flex;
+  gap: 0.8rem;
+  padding: 0.85rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  font-size: 0.88rem;
+}
+
+.risk-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.risk-item.critical .risk-icon { background: var(--rose-bg); color: var(--rose); }
+.risk-item.high .risk-icon { background: var(--rose-bg); color: var(--rose); }
+.risk-item.medium .risk-icon { background: var(--amber-bg); color: var(--amber); }
+.risk-item.low .risk-icon { background: var(--sage-bg); color: var(--sage); }
+
+.risk-details h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.risk-details p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Recommendations Card */
+.recommendations-box {
+  background: var(--sage-bg);
+  border: 1px solid rgba(71, 122, 104, 0.2);
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+}
+
+.recommendations-box h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--sage);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.recommendations-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.recommendations-box li {
+  font-size: 0.82rem;
+  color: #2d4d42;
+  margin-bottom: 0.4rem;
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+.recommendations-box li::before {
+  content: "•";
+  position: absolute;
+  left: 0.3rem;
+  color: var(--sage);
+  font-weight: bold;
+}
+
+/* Modal Drawer for Model Info */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 999;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  width: 90%;
+  max-width: 650px;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  border: 1px solid var(--border-color);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.metric-box {
+  background: var(--bg-main);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.metric-val {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.metric-lbl {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.json-code {
+  background: var(--bg-main);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+}
+
+/* Spinner */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: spin 0.7s linear infinite;
+  display: none;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraHealth • Healthcare Cost Prediction</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="header-title">
+        <div class="brand-badge">
+          <span class="dot"></span> AuraHealth AI Pipeline
+        </div>
+        <h1>Healthcare Cost Predictor</h1>
+        <p>Estimate annual medical expenses using tuned Machine Learning pipelines.</p>
+      </div>
+
+      <button id="btn-model-info" class="btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+        Model Specs & Metrics
+      </button>
+    </header>
+
+    <!-- Main Dashboard Grid -->
+    <main class="dashboard-grid">
+      
+      <!-- Input Controls Card -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Patient Profile</h2>
+            <p class="card-subtitle">Adjust demographic & health parameters</p>
+          </div>
+        </div>
+
+        <form id="prediction-form">
+          
+          <!-- Age Field -->
+          <div class="form-group">
+            <div class="form-label">
+              <span>Patient Age</span>
+              <span class="form-value-badge"><span id="age-val">35</span> yrs</span>
+            </div>
+            <div class="slider-container">
+              <input type="range" id="age" name="age" min="18" max="90" value="35" class="custom-slider">
+            </div>
+          </div>
+
+          <!-- Sex Toggle -->
+          <div class="form-group">
+            <label class="form-label">Biological Sex</label>
+            <div class="segmented-control">
+              <div class="segmented-option">
+                <input type="radio" id="sex-male" name="sex" value="male" checked>
+                <label for="sex-male">Male</label>
+              </div>
+              <div class="segmented-option">
+                <input type="radio" id="sex-female" name="sex" value="female">
+                <label for="sex-female">Female</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- BMI Field -->
+          <div class="form-group">
+            <div class="form-label">
+              <span>Body Mass Index (BMI) <span id="bmi-status" class="bmi-indicator bmi-overweight">Overweight</span></span>
+              <span class="form-value-badge"><span id="bmi-val">27.5</span></span>
+            </div>
+            <div class="slider-container">
+              <input type="range" id="bmi" name="bmi" min="15.0" max="50.0" step="0.1" value="27.5" class="custom-slider">
+            </div>
+          </div>
+
+          <!-- Children Count -->
+          <div class="form-group">
+            <div class="form-label">
+              <span>Dependent Children</span>
+              <span class="form-value-badge"><span id="children-val">1</span></span>
+            </div>
+            <div class="slider-container">
+              <input type="range" id="children" name="children" min="0" max="6" value="1" class="custom-slider">
+            </div>
+          </div>
+
+          <!-- Smoker Status Toggle -->
+          <div class="form-group">
+            <label class="form-label">Tobacco Usage (Smoker)</label>
+            <div class="segmented-control">
+              <div class="segmented-option">
+                <input type="radio" id="smoker-no" name="smoker" value="no" checked>
+                <label for="smoker-no">Non-Smoker</label>
+              </div>
+              <div class="segmented-option">
+                <input type="radio" id="smoker-yes" name="smoker" value="yes">
+                <label for="smoker-yes" class="smoker-yes">Smoker</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Region Dropdown -->
+          <div class="form-group">
+            <label for="region" class="form-label">US Residential Region</label>
+            <select id="region" name="region" class="select-control">
+              <option value="southwest" selected>Southwest</option>
+              <option value="southeast">Southeast</option>
+              <option value="northeast">Northeast</option>
+              <option value="northwest">Northwest</option>
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="btn-submit" class="btn-submit">
+            <span class="spinner" id="spinner"></span>
+            <span id="btn-text">Predict Healthcare Cost</span>
+          </button>
+
+        </form>
+      </section>
+
+      <!-- Output Results Card -->
+      <section class="card results-card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Cost & Risk Analysis</h2>
+            <p class="card-subtitle">AI predicted annual medical expense</p>
+          </div>
+          <span style="font-size: 0.8rem; color: var(--text-muted);" id="model-name-text">Tuned ML Regressor</span>
+        </div>
+
+        <!-- Hero Prediction Block -->
+        <div class="hero-prediction">
+          <div class="prediction-label">Estimated Annual Charge</div>
+          <div class="prediction-amount" id="predicted-cost">$0.00</div>
+          <div>
+            <span id="risk-badge" class="badge-pill info">Calculating...</span>
+          </div>
+        </div>
+
+        <!-- Percentile Track -->
+        <div class="percentile-section">
+          <div class="percentile-header">
+            <span>Population Distribution Benchmark</span>
+            <span id="percentile-text" style="font-weight: 600;">--</span>
+          </div>
+          <div class="progress-track">
+            <div id="percentile-fill" class="progress-fill"></div>
+          </div>
+        </div>
+
+        <!-- Primary Risk Drivers -->
+        <div>
+          <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.8rem;">Key Cost Drivers</h3>
+          <div id="risk-list" class="risk-list">
+            <!-- Dynamic Risk Items -->
+          </div>
+        </div>
+
+        <!-- Recommendations Box -->
+        <div class="recommendations-box">
+          <h4>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Health & Financial Recommendations
+          </h4>
+          <ul id="recs-list">
+            <!-- Dynamic Recommendations -->
+          </ul>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Model Specs Modal Drawer -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 1.2rem; font-weight: 700;">ML Model Architecture & Specs</h3>
+        <button id="btn-close-modal" class="btn-ghost" style="padding: 0.3rem 0.7rem; border-radius: 50%;">✕</button>
+      </div>
+
+      <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem;">
+        Model selected & hyperparameter-tuned using <strong>RandomizedSearchCV</strong> with 5-Fold Cross Validation.
+      </p>
+
+      <div class="metric-grid">
+        <div class="metric-box">
+          <div class="metric-val" id="modal-r2">--</div>
+          <div class="metric-lbl">Test R² Score</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-val" id="modal-mae">--</div>
+          <div class="metric-lbl">MAE ($)</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-val" id="modal-rmse">--</div>
+          <div class="metric-lbl">RMSE ($)</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.2rem;">
+        <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem;">Selected Algorithm</h4>
+        <p id="modal-name" style="font-size: 0.9rem; color: var(--primary); font-weight: 600;">--</p>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem;">Best Hyperparameters (RandomizedSearchCV)</h4>
+        <pre class="json-code" id="modal-params">Loading...</pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

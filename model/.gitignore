@@ -1,0 +1,5 @@
+# Ignore generated model artifacts in this folder
+*
+
+# Keep this file itself tracked
+!.gitignore
