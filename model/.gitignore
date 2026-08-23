@@ -1,5 +1,4 @@
-# Ignore generated model artifacts in this folder
+# Keep the production model available to the Vercel function.
 *
-
-# Keep this file itself tracked
 !.gitignore
+!healthcare_model.pkl

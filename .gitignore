@@ -31,6 +31,7 @@ Thumbs.db
 model/*.pkl
 model/*.joblib
 model/*.pickle
+!model/healthcare_model.pkl
 *.log
 
 # Local data caches (keep source data tracked if needed)
