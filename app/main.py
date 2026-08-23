@@ -12,8 +12,8 @@ from app.schemas import InsuranceInput, PredictionOutput, ModelInfoOutput
 from app.predictor import CostPredictor
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATIC_DIR = os.path.join(BASE_DIR, "static")
-TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
+STATIC_DIR = os.path.join(BASE_DIR, "frontend/static")
+TEMPLATES_DIR = os.path.join(BASE_DIR, "frontend/templates")
 
 # Initialize predictor singleton lazily or on startup
 predictor_instance = None
